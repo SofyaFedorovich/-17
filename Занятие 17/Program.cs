@@ -11,23 +11,38 @@ namespace Занятие_17
         static void Main(string[] args)
         {
             BankAccount<int>bankAccount1 = new BankAccount<int>();
+            BankAccount<string> bankAccount2 = new BankAccount<string>();
 
-            BankAccount<double> bankAccount2 = new BankAccount<double>();
 
-            BankAccount<string> bankAccount3 = new BankAccount<string>();
-            
+
+
+            /* BankAccount<double> bankAccount2 = new BankAccount<double>();
+             bankAccount2.Balance = 0;
+             BankAccount<string> bankAccount3 = new BankAccount<string>();
+             bankAccount3.Name = "{}";
+             bankAccount1.accountInfo <int>();
+             bankAccount1.P   */         //метод для вывода информации об экземпляре класса на печать
+
+            bankAccount1.Print<T>();  
+
             Console.ReadKey();
 
         }
     }
-    class BankAccount<T>  // Класс для моделирования счета в банке с универсальным параметром
+    class BankAccount<T>  // Класс для моделирования счета в банке обобщенный
     {
-        private T account;    //закрытые поля для номера счета
-        private double balance; // ...баланса
-        private string name;    //фио владельца
-        public void Info<T>(T value)
+        internal T account;    //закрытые поля для номера счета, параметр Т определяет тип номера счета
+        internal double balance; // поле баланса
+        internal string name;    //поле фио владельца
+        public void AccountInfo<T> (T value)    //метод для доступа к данным - заполнения и чтения
         {
-            Console.WriteLine();
+            int Account = Convert.ToInt32(Console.ReadLine());
+            double balance = Convert.ToDouble(Console.ReadLine());
+            string name = Console.ReadLine();
+        }
+       public void Print<T>(T value)
+        {
+            Console.WriteLine("Информация по счету: номер {0}, баланс {1}, фио владельца {2}",account, balance,name);
         }
         public T Account
         {
@@ -50,7 +65,7 @@ namespace Занятие_17
                 }
                 else
                 {
-                    Console.WriteLine("Баланс счета не может быть отрицательным");
+                    Console.WriteLine("Баланс счета должен быть положительным");
                 }
             }
             get
