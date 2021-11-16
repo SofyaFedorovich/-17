@@ -9,21 +9,14 @@ namespace Занятие_17
     class Program
     {
         static void Main(string[] args)
-        {
-            BankAccount<int>bankAccount1 = new BankAccount<int>();
+        {   //параметризированный экземпляр класса 
+            BankAccount<int> bankAccount1 = new BankAccount<int>();
             BankAccount<string> bankAccount2 = new BankAccount<string>();
+            BankAccount<double> bankAccount3 = new BankAccount<double>();
+            BankAccount<string> bankAccount4 = new BankAccount<string>();
 
-
-
-
-            /* BankAccount<double> bankAccount2 = new BankAccount<double>();
-             bankAccount2.Balance = 0;
-             BankAccount<string> bankAccount3 = new BankAccount<string>();
-             bankAccount3.Name = "{}";
-             bankAccount1.accountInfo <int>();
-             bankAccount1.P   */         //метод для вывода информации об экземпляре класса на печать
-
-            bankAccount1.Print<T>();  
+            bankAccount1.Print("bankAccount1");
+            bankAccount2.Print("bankAccount2);
 
             Console.ReadKey();
 
@@ -34,15 +27,18 @@ namespace Занятие_17
         internal T account;    //закрытые поля для номера счета, параметр Т определяет тип номера счета
         internal double balance; // поле баланса
         internal string name;    //поле фио владельца
-        public void AccountInfo<T> (T value)    //метод для доступа к данным - заполнения и чтения
+        public void AccountInfo<T>(T value)    //метод для доступа к данным - заполнения и чтения
         {
+            Console.WriteLine("Задайте номер счета: ");
             int Account = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Задайте баланс счета: ");
             double balance = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Задайте баланс счета: ");
             string name = Console.ReadLine();
         }
-       public void Print<T>(T value)
+        public void Print<T>(T value) //метод для вывода информации на консоль
         {
-            Console.WriteLine("Информация по счету: номер {0}, баланс {1}, фио владельца {2}",account, balance,name);
+            Console.WriteLine("Информация по счету: номер {0}, баланс {1}, фио владельца {2}", account, balance, name);
         }
         public T Account
         {
