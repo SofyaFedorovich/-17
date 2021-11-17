@@ -16,7 +16,7 @@ namespace Занятие_17
             BankAccount<string> bankAccount4 = new BankAccount<string>();
 
             bankAccount1.Print("bankAccount1");
-            bankAccount2.Print("bankAccount2);
+            bankAccount2.Print("bankAccount2");
 
             Console.ReadKey();
 
