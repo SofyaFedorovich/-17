@@ -11,35 +11,22 @@ namespace Занятие_17
         static void Main(string[] args)
         {   //параметризированный экземпляр класса 
             BankAccount<int> bankAccount1 = new BankAccount<int>();
+            bankAccount1.AccountInfo(11111, 29800, "Федорович С.Ю.");
+            bankAccount1.Print();
+            Console.WriteLine();
             BankAccount<string> bankAccount2 = new BankAccount<string>();
-            BankAccount<double> bankAccount3 = new BankAccount<double>();
-            BankAccount<string> bankAccount4 = new BankAccount<string>();
-
-            bankAccount1.Print("bankAccount1");
-            bankAccount2.Print("bankAccount2");
-
-            Console.ReadKey();
+            bankAccount2.AccountInfo("11111", 18999, "Федорович С.Ю.");
+            bankAccount2.Print();
+            Console.ReadLine();
 
         }
     }
     class BankAccount<T>  // Класс для моделирования счета в банке обобщенный
     {
-        internal T account;    //закрытые поля для номера счета, параметр Т определяет тип номера счета
-        internal double balance; // поле баланса
-        internal string name;    //поле фио владельца
-        public void AccountInfo<T>(T value)    //метод для доступа к данным - заполнения и чтения
-        {
-            Console.WriteLine("Задайте номер счета: ");
-            int Account = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Задайте баланс счета: ");
-            double balance = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Задайте баланс счета: ");
-            string name = Console.ReadLine();
-        }
-        public void Print<T>(T value) //метод для вывода информации на консоль
-        {
-            Console.WriteLine("Информация по счету: номер {0}, баланс {1}, фио владельца {2}", account, balance, name);
-        }
+
+        private T account;    //закрытые поля для номера счета, параметр Т определяет тип номера счета
+        private double balance; // поле баланса
+        private string name;    //поле фио владельца
         public T Account
         {
             set
@@ -81,5 +68,21 @@ namespace Занятие_17
                 return name;
             }
         }
+
+        public void AccountInfo(T account, double balance, string name)    //метод для доступа к данным - заполнения и чтения
+        {
+            Console.WriteLine("Введите ФИО владельца счета: ");
+            Name = (string)Convert.ChangeType(Console.ReadLine(), typeof(string));
+            Console.WriteLine("Введите номер счета: ");
+            Account = (T)Convert.ChangeType(Console.ReadLine(), typeof(T));
+            Console.WriteLine("Введите баланс счета: ");
+            Balance = (double)Convert.ChangeType(Console.ReadLine(), typeof(double));
+        }
+
+            public void Print() //метод для вывода информации на консоль
+            {
+                Console.WriteLine("Информация по счету: номер {0}, баланс счета {1}, фио владельца {2}", account, balance, name);
+            }
+
+        }
     }
-}
